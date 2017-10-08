@@ -7,7 +7,7 @@ class Index(View):
         self.template_name = template_name
         print("===============>>>>>")
         print("From {}".format(self.template_name))
-        print(dict(rsession.session_is_active))
+        print(rsession.session_is_active)
         print("===============>>>>>")
 
     def get_template_name(self):
