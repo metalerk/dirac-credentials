@@ -4,11 +4,13 @@ from utils.utils import nocache
 
 class DashboardView(View):
 
-    def __init__(self, template_name, db):
+    def __init__(self, template_name, db, rsession):
+        self.rsession = rsession
         self.template_name = template_name
         self.qs = db
         print("===============>>>>>")
         print("From {}".format(self.template_name))
+        print(self.rsession.session_is_active)
         print("===============>>>>>")
 
     def get_template_name(self):
@@ -20,12 +22,10 @@ class DashboardView(View):
     @nocache
     def dispatch_request(self):
 
-        if 'active' in session:
-
-            if session['active']:
-                context = [item for item in self.qs.credentials.find()][0]
-                context['title'] = 'Index'
-
-                return self.render_template(context)
-
-        return redirect('/')
+        if self.rsession.session_is_active:
+            context = [item for item in self.qs.credentials.find()][0]
+            context['title'] = 'Index'
+            return self.render_template(context)
+        
+        else:
+            return redirect('/')

@@ -4,11 +4,12 @@ from utils.utils import nocache
 
 class Index(View):
     def __init__(self, template_name, rsession):
+        self.rsession = rsession
         self.template_name = template_name
         print("===============>>>>>")
         print("From {}".format(self.template_name))
-        print(rsession.session_is_active)
-        print(rsession.get_obj_identifier())
+        print(self.rsession.session_is_active)
+        print(self.rsession.get_obj_identifier)
         print("===============>>>>>")
 
     def get_template_name(self):
@@ -20,17 +21,18 @@ class Index(View):
     @nocache
     def dispatch_request(self):
 
-        if 'active' in session:
-            if session['active']:
-                return redirect(url_for('dashboard'))
-
         context = dict()
         context['title'] = 'Index'
 
-        return self.render_template(context)
+        if self.rsession.session_is_active:
+            return redirect(url_for('dashboard'))
+
+        else:
+            return self.render_template(context)
 
 class AuthBackend(MethodView):
-    def __init__(self, db):
+    def __init__(self, db, rsession):
+        self.rsession = rsession
         methods = ['POST']
         self.qs = db
 
@@ -38,21 +40,22 @@ class AuthBackend(MethodView):
 
         print("===============>>>>>")
         print("From auth")
-        print(dict(session))
+        print(rsession.session_is_active)
         print("===============>>>>>")
 
-        if 'active' in session:
-            if session['active']:
-                return redirect(url_for('dashboard'))
-
-        auth_code = self.qs.auth.find_one()['code']
-        req_code = request.form.get('code')
-
-        if auth_code == req_code:
-            session['active'] = True
+        if self.rsession.session_is_active:
             return redirect(url_for('dashboard'))
+
         else:
-            return redirect('/')
+
+            auth_code = self.qs.auth.find_one()['code']
+            req_code = request.form.get('code')
+
+            if auth_code == req_code:
+                self.rsession.set_session_active()
+                return redirect(url_for('dashboard'))
+            else:
+                return redirect('/')
 
 
 
