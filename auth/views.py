@@ -1,5 +1,6 @@
 from flask.views import View, MethodView
 from flask import render_template, session, redirect, url_for, request
+from utils.utils import nocache
 
 class Index(View):
     def __init__(self, template_name):
@@ -11,9 +12,13 @@ class Index(View):
     def render_template(self, context):
         return render_template(self.get_template_name(), **context)
 
+    @nocache
     def dispatch_request(self):
 
         if 'active' in session:
+            print("===============>>>>>")
+            print(session['active'])
+            print("===============>>>>>")
             if session['active']:
                 return redirect(url_for('dashboard'))
 
@@ -30,7 +35,6 @@ class AuthBackend(MethodView):
     def post(self):
 
         if 'active' in session:
-            print(session)
             if session['active']:
                 return redirect(url_for('dashboard'))
 

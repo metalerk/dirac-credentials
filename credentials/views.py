@@ -1,5 +1,6 @@
 from flask.views import View
 from flask import render_template, session, redirect, url_for
+from utils.utils import nocache
 
 class DashboardView(View):
 
@@ -13,6 +14,7 @@ class DashboardView(View):
     def render_template(self, context):
         return render_template(self.get_template_name(), **context)
 
+    @nocache
     def dispatch_request(self):
 
         if 'active' in session:
