@@ -55,7 +55,7 @@ class Logout(View):
 
         if 'active' in session:
             if session['active']:
-                session['active'] = False
+                del session['active']
                 return redirect(url_for('index'))
             else:
                 return redirect(url_for('index'))
