@@ -1,6 +1,27 @@
 from flask import make_response
 from functools import wraps, update_wrapper
 from datetime import datetime
+from uuid import uuid4
+import redis
+
+class RedisSession:
+    def __init__(self):
+        self.manager = redis.StrictRedis(host=os.environ['REDIS_HOST'], port=os.environ['REDIS_PORT'], db=os.environ['REDIS_DB'], password=os.environ['REDIS_PASSWORD'])
+        self.id = uuid4().__str__()
+
+    def set_session_active(self):
+        return self.manager.set("{}:active".format(self.id), True)
+
+    def set_session_inactive(self):
+        return self.manager.set("{}:active".format(self.id), False)
+
+    @property
+    def session_is_active(self):
+        return True if self.manager.get("{}:active".format(self.id)) else False
+
+    def __del__(self):
+        self.manager.delete("{}:active".format(self.id))
+
 
 def nocache(view):
     @wraps(view)
