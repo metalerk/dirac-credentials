@@ -1,0 +1,26 @@
+from flask.views import View
+from flask import render_template, session, redirect, url_for
+
+class DashboardView(View):
+
+    def __init__(self, template_name, db):
+        self.template_name = template_name
+        self.qs = db
+
+    def get_template_name(self):
+        return self.template_name
+
+    def render_template(self, context):
+        return render_template(self.get_template_name(), **context)
+
+    def dispatch_request(self):
+
+        if 'active' in session:
+
+            if session['active']:
+                context = [item for item in self.qs.credentials.find()][0]
+                context['title'] = 'Index'
+
+                return self.render_template(context)
+
+        return redirect('/')

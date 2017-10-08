@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col l4 m4 s12 push-l4 push-m4">
+          <h3>Credentials</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col l8 m8 s12 push-l2 push-m2">
+            <ul class="collapsible popout" data-collapsible="accordion">
+                {% for service in credentials %}
+                <li>
+                <div class="collapsible-header"><i class="material-icons">code</i>{{ service.name|capitalize }}</div>
+                  <div class="collapsible-body"><span>
+
+                    {% for field in service.fields %}
+                    <strong>{{ field.name|upper }}</strong>: {{ field.value }}
+                    <br>
+                    {% endfor %}
+
+                  </span></div>
+                  <li>
+                {% endfor %}
+
+            </ul>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

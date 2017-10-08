@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- jquery -->
+    <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+    <!-- end -->
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- materialize cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!-- end -->
+
+  </head>
+  <body>
+
+    {% block menu %}
+    <div class="row">
+      <nav>
+        <div class="nav-wrapper blue darken-4">
+          <a href="#!" class="brand-logo"><i class="material-icons left">dashboard</i>Asesorias Dirac</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            {% if session['active'] %}
+              <li><a class="waves-effect waves-light btn deep-orange darken-4" href="{{ dirac_url }}" target="_blank"><i class="material-icons left">cloud</i>Open Webapp</a></li>
+              <li><a class="waves-effect waves-light btn deep-orange darken-4" href="/logout"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+            {% endif %}
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            {% if session['active'] %}
+            <li><a class="waves-effect waves-light btn deep-orange darken-4" href="/logout"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+            <li><a class="waves-effect waves-light btn deep-orange darken-4" href="{{ dirac_url }}" target="_blank"><i class="material-icons left">cloud</i>Open Webapp</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </div>
+    {% endblock %}
+    {% block body %}
+    {% endblock %}
+
+    <script type="text/javascript">
+       $(".button-collapse").sideNav();
+    </script>
+
+  </body>
+</html>
