@@ -32,7 +32,7 @@ class AuthBackend(MethodView):
         if 'active' in session:
             if session['active']:
 
-                return redirect('/')
+                return redirect(url_for('dashboard'))
 
 
         auth_code = self.qs.auth.find_one()['code']
