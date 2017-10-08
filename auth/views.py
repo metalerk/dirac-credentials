@@ -57,6 +57,8 @@ class AuthBackend(MethodView):
             else:
                 return redirect('/')
 
+    def get(self):
+        return redirect('/')
 
 
 class Logout(View):
