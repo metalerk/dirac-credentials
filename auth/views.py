@@ -40,7 +40,7 @@ class AuthBackend(MethodView):
 
         print("===============>>>>>")
         print("From auth")
-        print(rsession.session_is_active)
+        print(self.rsession.session_is_active)
         print("===============>>>>>")
 
         if self.rsession.session_is_active:
