@@ -47,8 +47,10 @@ class Logout(View):
     def dispatch_request(self):
 
         if 'active' in session:
-            session['active'] = False
-            return redirect(url_for('index'))
-
+            if session['active']:
+                session['active'] = False
+                return redirect(url_for('index'))
+            else:
+                return redirect(url_for('index'))
         else:
             return redirect(url_for('index'))
