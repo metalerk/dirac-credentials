@@ -16,9 +16,9 @@ db = conn[os.environ['MONGODB_DB']]
 rsession = RedisSession()
 
 app.add_url_rule('/', view_func=Index.as_view('index', template_name='index.html', rsession=rsession))
-app.add_url_rule('/dashboard', view_func=DashboardView.as_view('dashboard', template_name='dashboard.html', db=db))
+app.add_url_rule('/dashboard', view_func=DashboardView.as_view('dashboard', template_name='dashboard.html', db=db, rsession=rsession))
 app.add_url_rule('/auth', view_func=AuthBackend.as_view('auth', db=db, rsession=rsession))
-app.add_url_rule('/logout', view_func=Logout.as_view('logout'))
+app.add_url_rule('/logout', view_func=Logout.as_view('logout', rsession=rsession))
 
 def main():
     app.run(host='0.0.0.0', port=8080, debug=True)

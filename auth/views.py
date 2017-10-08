@@ -60,14 +60,13 @@ class AuthBackend(MethodView):
 
 
 class Logout(View):
+    def __init__(self, rsession):
+        self.rsession = rsession
 
     def dispatch_request(self):
 
-        if 'active' in session:
-            if session['active']:
-                del session['active']
-                return redirect(url_for('index'))
-            else:
-                return redirect(url_for('index'))
+        if self.rsession.session_is_active:
+            self.rsession.set_session_inactive()
+            return redirect(url_for('index'))
         else:
             return redirect(url_for('index'))
