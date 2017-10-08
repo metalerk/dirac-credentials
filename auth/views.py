@@ -3,11 +3,11 @@ from flask import render_template, session, redirect, url_for, request
 from utils.utils import nocache
 
 class Index(View):
-    def __init__(self, template_name):
+    def __init__(self, template_name, rsession):
         self.template_name = template_name
         print("===============>>>>>")
         print("From {}".format(self.template_name))
-        print(dict(session))
+        print(dict(rsession.session_is_active))
         print("===============>>>>>")
 
     def get_template_name(self):

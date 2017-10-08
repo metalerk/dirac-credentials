@@ -4,7 +4,7 @@ from utils.utils import nocache
 
 class DashboardView(View):
 
-    def __init__(self, template_name, db, rsession):
+    def __init__(self, template_name, db):
         self.template_name = template_name
         self.qs = db
         print("===============>>>>>")
