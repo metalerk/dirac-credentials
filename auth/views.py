@@ -29,15 +29,18 @@ class AuthBackend(MethodView):
 
     def post(self):
 
+        if 'active' in session:
+            if session['active']:
+
+                return redirect('/')
+
+
         auth_code = self.qs.auth.find_one()['code']
         req_code = request.form.get('code')
 
         if auth_code == req_code:
             session['active'] = True
             return redirect(url_for('dashboard'))
-
-        else:
-            return redirect('/')
 
 class Logout(View):
 

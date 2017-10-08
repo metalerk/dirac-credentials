@@ -18,7 +18,7 @@ app.add_url_rule('/auth', view_func=AuthBackend.as_view('auth', db=db))
 app.add_url_rule('/logout', view_func=Logout.as_view('logout'))
 
 def main():
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    app.run(host='0.0.0.0', port=8080, debug=True)
 
 if __name__ == '__main__':
     main()
