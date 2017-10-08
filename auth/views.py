@@ -23,6 +23,7 @@ class Index(View):
 
         context = dict()
         context['title'] = 'Index'
+        context['rsession'] = self.rsession
 
         if self.rsession.session_is_active:
             return redirect(url_for('dashboard'))
