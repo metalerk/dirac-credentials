@@ -22,7 +22,6 @@ class Index(View):
     def dispatch_request(self):
 
         context = dict()
-        context['title'] = 'Index'
         context['rsession'] = self.rsession
 
         if self.rsession.session_is_active:
