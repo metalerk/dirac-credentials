@@ -1,5 +1,5 @@
 from flask.views import View
-from flask import render_template, session, redirect, url_for
+from flask import render_template, redirect, url_for
 from utils.utils import nocache
 
 class DashboardView(View):
@@ -26,6 +26,6 @@ class DashboardView(View):
             context = [item for item in self.qs.credentials.find()][0]
             context['title'] = 'Index'
             return self.render_template(context)
-        
+
         else:
             return redirect('/')

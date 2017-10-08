@@ -1,5 +1,5 @@
 from flask.views import View, MethodView
-from flask import render_template, session, redirect, url_for, request
+from flask import render_template, redirect, url_for, request
 from utils.utils import nocache
 
 class Index(View):

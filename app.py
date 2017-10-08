@@ -1,4 +1,4 @@
-from flask import Flask, session
+from flask import Flask
 from credentials.views import DashboardView
 from auth.views import Index, AuthBackend, Logout
 from pymongo import MongoClient
@@ -8,7 +8,7 @@ import random, os, string
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(50))
+#app.config['SECRET_KEY'] = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(50))
 
 conn = MongoClient(os.environ['MONGODB_URI'])
 db = conn[os.environ['MONGODB_DB']]

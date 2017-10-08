@@ -6,7 +6,7 @@
 
 {% block body %}
 
-{% if not session['active'] %}
+{% if not rsession.session_is_active %}
 <div class="container">
   <div class="row">
     <div class="col l12 m12 s12 center-align">
