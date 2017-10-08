@@ -5,6 +5,10 @@ from utils.utils import nocache
 class Index(View):
     def __init__(self, template_name):
         self.template_name = template_name
+        print("===============>>>>>")
+        print("From {}".format(self.template_name))
+        print(dict(session))
+        print("===============>>>>>")
 
     def get_template_name(self):
         return self.template_name
@@ -16,9 +20,6 @@ class Index(View):
     def dispatch_request(self):
 
         if 'active' in session:
-            print("===============>>>>>")
-            print(session['active'])
-            print("===============>>>>>")
             if session['active']:
                 return redirect(url_for('dashboard'))
 
@@ -33,6 +34,11 @@ class AuthBackend(MethodView):
         self.qs = db
 
     def post(self):
+
+        print("===============>>>>>")
+        print("From auth")
+        print(dict(session))
+        print("===============>>>>>")
 
         if 'active' in session:
             if session['active']:

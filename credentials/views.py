@@ -7,6 +7,9 @@ class DashboardView(View):
     def __init__(self, template_name, db):
         self.template_name = template_name
         self.qs = db
+        print("===============>>>>>")
+        print(dict(session))
+        print("===============>>>>>")
 
     def get_template_name(self):
         return self.template_name
