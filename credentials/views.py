@@ -8,6 +8,7 @@ class DashboardView(View):
         self.template_name = template_name
         self.qs = db
         print("===============>>>>>")
+        print("From {}".format(self.template_name))
         print(dict(session))
         print("===============>>>>>")
 
