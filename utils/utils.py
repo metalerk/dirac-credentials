@@ -18,7 +18,10 @@ class RedisSession:
 
     @property
     def session_is_active(self):
-        return True if self.manager.get("{}:active".format(self.id)).decode('iso-8859-1')) != "False" else False
+        if self.manager.get("{}:active".format(self.id)).decode('iso-8859-1')) != "False":
+            return True
+        else:
+            return False
 
     @property
     def get_obj_identifier(self):
