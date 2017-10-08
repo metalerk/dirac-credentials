@@ -18,7 +18,7 @@ class RedisSession:
 
     @property
     def session_is_active(self):
-        return True if self.manager.get("{}:active".format(self.id)) else False
+        return True if bool(self.manager.get("{}:active".format(self.id))) == True else False
 
     @property
     def get_obj_identifier(self):
