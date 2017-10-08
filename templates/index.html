@@ -6,6 +6,7 @@
 
 {% block body %}
 
+{% if not session['active'] %}
 <div class="container">
   <div class="row">
     <div class="col l12 m12 s12 center-align">
@@ -34,5 +35,17 @@
     </form>
   </div>
 </div>
+
+{% else %}
+
+<div class="container">
+  <div class="row">
+    <div class="col l6 m6 s12 push-l3 push-m3">
+        <img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" width="250" src="https://static.lamega.com.co/wp-content/uploads/20170410091449/mia-khalifa-231602-1280x0.jpg">
+    </div>
+  </div>
+</div>
+
+{% endif %}
 
 {% endblock %}

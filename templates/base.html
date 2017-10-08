@@ -36,8 +36,8 @@
           </ul>
           <ul class="side-nav" id="mobile-demo">
             {% if session['active'] %}
-            <li><a class="waves-effect waves-light btn deep-orange darken-4" href="/logout"><i class="material-icons left">exit_to_app</i>Logout</a></li>
             <li><a class="waves-effect waves-light btn deep-orange darken-4" href="{{ dirac_url }}" target="_blank"><i class="material-icons left">cloud</i>Open Webapp</a></li>
+            <li><a class="waves-effect waves-light btn deep-orange darken-4" href="/logout"><i class="material-icons left">exit_to_app</i>Logout</a></li>
             {% endif %}
           </ul>
         </div>
@@ -49,6 +49,10 @@
 
     <script type="text/javascript">
        $(".button-collapse").sideNav();
+
+       $(document).ready(function(){
+         $('.materialboxed').materialbox();
+  });
     </script>
 
   </body>
