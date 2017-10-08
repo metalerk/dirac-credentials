@@ -25,6 +25,7 @@ class DashboardView(View):
         if self.rsession.session_is_active:
             context = [item for item in self.qs.credentials.find()][0]
             context['title'] = 'Index'
+            context['rsession'] = self.rsession
             return self.render_template(context)
 
         else:
