@@ -8,6 +8,7 @@ class Index(View):
         print("===============>>>>>")
         print("From {}".format(self.template_name))
         print(rsession.session_is_active)
+        print(rsession.get_obj_identifier())
         print("===============>>>>>")
 
     def get_template_name(self):

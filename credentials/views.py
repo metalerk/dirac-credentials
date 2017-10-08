@@ -9,7 +9,6 @@ class DashboardView(View):
         self.qs = db
         print("===============>>>>>")
         print("From {}".format(self.template_name))
-        print(dict(rsession.get('app:active')))
         print("===============>>>>>")
 
     def get_template_name(self):

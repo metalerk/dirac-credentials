@@ -20,6 +20,10 @@ class RedisSession:
     def session_is_active(self):
         return True if self.manager.get("{}:active".format(self.id)) else False
 
+    @property
+    def get_obj_identifier(self):
+        return self.id
+
     def __del__(self):
         self.manager.delete("{}:active".format(self.id))
 
