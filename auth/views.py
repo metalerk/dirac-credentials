@@ -30,6 +30,7 @@ class AuthBackend(MethodView):
     def post(self):
 
         if 'active' in session:
+            print(session)
             if session['active']:
                 return redirect(url_for('dashboard'))
 
