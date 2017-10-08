@@ -20,6 +20,7 @@ class RedisSession:
     def session_is_active(self):
         if self.manager.get("{}:active".format(self.id)).decode('iso-8859-1')) != "False":
             return True
+
         else:
             return False
 
