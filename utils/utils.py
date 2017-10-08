@@ -2,6 +2,7 @@ from flask import make_response
 from functools import wraps, update_wrapper
 from datetime import datetime
 from uuid import uuid4
+import os
 import redis
 
 class RedisSession:

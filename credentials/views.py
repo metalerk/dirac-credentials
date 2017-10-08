@@ -4,12 +4,12 @@ from utils.utils import nocache
 
 class DashboardView(View):
 
-    def __init__(self, template_name, db):
+    def __init__(self, template_name, db, rsession):
         self.template_name = template_name
         self.qs = db
         print("===============>>>>>")
         print("From {}".format(self.template_name))
-        print(dict(session))
+        print(dict(rsession.get('app:active')))
         print("===============>>>>>")
 
     def get_template_name(self):
